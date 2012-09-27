@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="fill_parent"
+    android.background="Color.TRANSPARENT"
+    android:gravity="center"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="323dp"
+        android:layout_height="140dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/aslhands" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="251dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:layout_margin="10dp"
+        android:layout_x="55dp"
+        android:layout_y="241dp"
+        android:text="ASL Dictionary" />
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_x="57dp"
+        android:layout_y="308dp"
+        android:text="Take Quiz" />
+
+    <Button
+        android:id="@+id/Button03"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_x="59dp"
+        android:layout_y="376dp"
+        android:text="Make Quiz" />
+
+    <Button
+        android:id="@+id/Button02"
+        android:layout_width="251dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_x="58dp"
+        android:layout_y="443dp"
+        android:text="Add New Sign" />
 
 </LinearLayout>
