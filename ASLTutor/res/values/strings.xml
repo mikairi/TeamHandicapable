@@ -3,5 +3,9 @@
 
     <string name="hello">Hello World, ASLTutorActivity!</string>
     <string name="app_name">ASLTutor</string>
+    <string name="bg_path">/ASLTutor/aslHands.png</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_take_quiz">TakeQuiz</string>
 
 </resources>
