@@ -19,8 +19,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TakeQuiz"
+            android:name=".ChooseQuiz"
             android:label="@string/title_activity_take_quiz" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".QuizSettings"
+            android:label="@string/title_activity_quiz_settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
