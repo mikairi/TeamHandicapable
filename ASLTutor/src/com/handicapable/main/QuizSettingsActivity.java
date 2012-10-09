@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class QuizSettings extends Activity {
+public class QuizSettingsActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".ASLTutorActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChooseQuiz"
+            android:name=".ChooseQuizActivity"
             android:label="@string/title_activity_take_quiz" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +28,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".QuizSettings"
+            android:name=".QuizSettingsActivity"
             android:label="@string/title_activity_quiz_settings" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddSignActivity"
+            android:label="@string/title_activity_add_sign" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.handicapable.main.ASLTutorActivity" />
         </activity>
     </application>
 
