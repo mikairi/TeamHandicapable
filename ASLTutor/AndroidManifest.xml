@@ -43,6 +43,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.main.ASLTutorActivity" />
         </activity>
+        <activity
+            android:name=".ChooseDictionaryActivity"
+            android:label="@string/title_activity_choose_dictionary" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.handicapable.main.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MakeQuizActivity"
+            android:label="@string/title_activity_make_quiz" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.handicapable.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

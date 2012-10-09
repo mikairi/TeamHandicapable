@@ -16,8 +16,23 @@ public class MainActivity extends Activity {
 		getWindow().setBackgroundDrawable(Drawable.createFromPath(getString(R.string.bg_path)));
 	}
 
+	public void startChooseDictionaryActivity(View view) {
+		Intent intent = new Intent(this, ChooseDictionaryActivity.class);
+		startActivity(intent);
+	}
+
 	public void startChooseQuizActivity(View view) {
 		Intent intent = new Intent(this, ChooseQuizActivity.class);
+		startActivity(intent);
+	}
+
+	public void startMakeQuizActiivty(View view) {
+		Intent intent = new Intent(this, MakeQuizActivity.class);
+		startActivity(intent);
+	}
+
+	public void startAddSignActivity(View view) {
+		Intent intent = new Intent(this, AddSignActivity.class);
 		startActivity(intent);
 	}
 

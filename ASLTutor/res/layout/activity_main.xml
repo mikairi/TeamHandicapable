@@ -11,7 +11,7 @@
         android:layout_height="140dp"
         android:layout_marginBottom="40dp"
         android:src="@drawable/aslhands" />
-
+
     <Button
         android:id="@+id/button1"
         android:layout_width="251dp"
@@ -19,6 +19,7 @@
         android:layout_margin="10dp"
         android:layout_x="55dp"
         android:layout_y="241dp"
+        android:onClick="startChooseDictionaryActivity"
         android:text="ASL Dictionary" />
 
     <Button
@@ -30,7 +31,7 @@
         android:layout_y="308dp"
         android:onClick="startChooseQuizActiivty"
         android:text="Take Quiz" />
-
+
     <Button
         android:id="@+id/Button03"
         android:layout_width="251dp"
@@ -38,8 +39,9 @@
         android:layout_margin="10dp"
         android:layout_x="59dp"
         android:layout_y="376dp"
+        android:onClick="startMakeQuizActivity"
         android:text="Make Quiz" />
-
+
     <Button
         android:id="@+id/Button02"
         android:layout_width="251dp"
@@ -47,6 +49,7 @@
         android:layout_margin="10dp"
         android:layout_x="58dp"
         android:layout_y="443dp"
+        android:onClick="startAddSignActivity"
         android:text="Add New Sign" />
 
 </LinearLayout>
