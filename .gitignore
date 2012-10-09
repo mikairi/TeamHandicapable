@@ -6,3 +6,6 @@
 *.ear
 
 .metadata
+
+ASLTutor/gen/
+ASLTutor/bin/
