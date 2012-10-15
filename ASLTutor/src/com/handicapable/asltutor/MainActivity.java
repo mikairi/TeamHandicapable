@@ -1,11 +1,10 @@
-package com.handicapable.main;
+package com.handicapable.asltutor;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
-import andorid.database.sqlite.SQLiteDatabase;
 
 public class MainActivity extends Activity {
 
@@ -16,7 +15,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		getWindow().setBackgroundDrawable(Drawable.createFromPath(getString(R.string.bg_path)));
 	}
-  
+
 	public void startChooseDictionaryActivity(View view) {
 		Intent intent = new Intent(this, ChooseDictionaryActivity.class);
 		startActivity(intent);

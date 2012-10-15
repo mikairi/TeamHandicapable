@@ -1,4 +1,4 @@
-package com.handicapable.main;
+package com.handicapable.asltutor;
 
 import android.os.Bundle;
 import android.app.Activity;
