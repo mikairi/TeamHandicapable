@@ -10,5 +10,6 @@
     <string name="title_activity_add_sign">Add New Sign</string>
     <string name="title_activity_choose_dictionary">Choose Dictionary </string>
     <string name="title_activity_make_quiz">Make New Quiz</string>
+    <string name="menu_search">Search</string>
 
 </resources>

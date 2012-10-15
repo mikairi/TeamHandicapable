@@ -5,6 +5,7 @@ import java.io.*;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DictionaryOpenHelper extends SQLiteOpenHelper {
 
@@ -41,6 +42,7 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		try {
 			copyDatabase();
+			Log.d("DictionaryOpenHelper", "Succesfully copied database");
 		} catch (IOException e) {
 			throw new Error("Error copying database");
 		}
