@@ -5,8 +5,8 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.*;
+import android.widget.Toast;
 
 @TargetApi(11)
 public class AddSignActivity extends Activity {
@@ -34,6 +34,13 @@ public class AddSignActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	public void addSign(View view) {
+		NavUtils.navigateUpFromSameTask(this);
+		Toast toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
+				Toast.LENGTH_SHORT);
+		toast.show();
 	}
 
 }
