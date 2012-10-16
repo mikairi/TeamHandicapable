@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.handicapable.asltutor"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -11,10 +10,10 @@
 
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name">
+        android:label="@string/app_name" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,38 +22,48 @@
         </activity>
         <activity
             android:name=".ChooseQuizActivity"
-            android:label="@string/title_activity_take_quiz">
+            android:label="@string/title_activity_take_quiz" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.handicapable.asltutor.MainActivity"></meta-data>
+                android:value="com.handicapable.asltutor.MainActivity" >
+            </meta-data>
         </activity>
         <activity
             android:name=".QuizSettingsActivity"
-            android:label="@string/title_activity_quiz_settings">
+            android:label="@string/title_activity_quiz_settings" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.handicapable.asltutor.MainActivity"></meta-data>
+                android:value="com.handicapable.asltutor.MainActivity" >
+            </meta-data>
         </activity>
         <activity
             android:name=".AddSignActivity"
-            android:label="@string/title_activity_add_sign">
+            android:label="@string/title_activity_add_sign" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.handicapable.asltutor.MainActivity"></meta-data>
+                android:value="com.handicapable.asltutor.MainActivity" >
+            </meta-data>
         </activity>
         <activity
             android:name=".ChooseDictionaryActivity"
-            android:label="@string/title_activity_choose_dictionary">
+            android:label="@string/title_activity_choose_dictionary" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.asltutor.MainActivity" />
         </activity>
         <activity
             android:name=".MakeQuizActivity"
-            android:label="@string/title_activity_make_quiz">
+            android:label="@string/title_activity_make_quiz" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.asltutor.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ChooseWordActivity"
+            android:label="@string/title_activity_choose_word" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.handicapable.asltutor.ChooseDictionaryActivity" />
         </activity>
     </application>
 

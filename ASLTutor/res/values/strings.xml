@@ -8,8 +8,9 @@
     <string name="title_activity_quiz_settings">Quiz Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_sign">Add New Sign</string>
-    <string name="title_activity_choose_dictionary">Choose Dictionary </string>
+    <string name="title_activity_choose_dictionary">Select Dictionary </string>
     <string name="title_activity_make_quiz">Make New Quiz</string>
     <string name="menu_search">Search</string>
+    <string name="title_activity_choose_word">Select Word</string>
 
 </resources>
