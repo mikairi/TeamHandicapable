@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -28,7 +29,8 @@ public class ChooseDictionaryActivity extends Activity {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
-		db = dbHelper.getReadableDatabase();
+		db = dbHelper.openReadableDatabase();
+		Log.d("ChooseDictionaryActivity", "Database opened " + db.getPath());
 
 		listView = (ListView) findViewById(R.id.dic_list);
 		show_dictionaries();
@@ -36,9 +38,9 @@ public class ChooseDictionaryActivity extends Activity {
 
 	private void show_dictionaries() {
 		// Get a list of dictionaries
-		Cursor queryResult = db.rawQuery("SELECT dic_name FROM dictionaries;", null);
+		Cursor queryResult = db.query("dictionaries", null, null, null, null, null, null);
 
-		String[] from = queryResult.getColumnNames();
+		String[] from = new String[] { "dic_name" };
 		int[] to = new int[] { R.id.word };
 
 		@SuppressWarnings("deprecation")

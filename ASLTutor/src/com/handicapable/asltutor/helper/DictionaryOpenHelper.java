@@ -5,7 +5,6 @@ import java.io.*;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DictionaryOpenHelper extends SQLiteOpenHelper {
 
@@ -18,10 +17,33 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 	public DictionaryOpenHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
 		this.context = context;
+
+		try {
+			createDatabase();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	private void copyDatabase() throws IOException {
-		InputStream inDB = context.getAssets().open(DB_NAME + ".sqlite");
+	public void createDatabase() throws IOException {
+		if (!dbExists()) {
+			SQLiteDatabase newDB = this.getReadableDatabase();
+			try {
+				copyDatabase();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			newDB.close();
+		}
+	}
+
+	private boolean dbExists() {
+		File dbFile = new File(DB_PATH + DB_NAME);
+		return dbFile.exists();
+	}
+
+	public void copyDatabase() throws IOException {
+		InputStream inDB = context.getAssets().open("dictionary.sqlite");
 		String outFilePath = DB_PATH + DB_NAME;
 		OutputStream outDB = new FileOutputStream(outFilePath);
 
@@ -38,14 +60,17 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 		inDB.close();
 	}
 
+	public SQLiteDatabase openReadableDatabase() {
+		return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
+	}
+
+	public SQLiteDatabase openWritableDatabase() {
+		return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READWRITE);
+	}
+
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		try {
-			copyDatabase();
-			Log.d("DictionaryOpenHelper", "Succesfully copied database");
-		} catch (IOException e) {
-			throw new Error("Error copying database");
-		}
+
 	}
 
 	@Override

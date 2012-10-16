@@ -6,8 +6,11 @@
 
     <TextView
         android:id="@+id/word"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@android:style/TextAppearance.Large"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:height="48dp"
         android:maxLines="1" />
 
 </LinearLayout>
