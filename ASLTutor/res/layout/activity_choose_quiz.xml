@@ -1,7 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="fill_horizontal" >
 
     <TextView
         android:id="@+id/textView1"
@@ -22,6 +24,7 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="53dp"
         android:onClick="startAlphabetQuiz"
+        android:layout_gravity="center_horizontal"
         android:text="Alphabet" />
 
     <Button
@@ -31,6 +34,7 @@
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
         android:layout_marginTop="27dp"
+        android:layout_gravity="center_horizontal"
         android:text="Numbers 0-10" />
 
     <Button
@@ -40,6 +44,7 @@
         android:layout_alignLeft="@+id/Button01"
         android:layout_below="@+id/Button01"
         android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
         android:text="Numbers 11-20" />
 
     <Button
@@ -49,6 +54,7 @@
         android:layout_alignLeft="@+id/Button02"
         android:layout_below="@+id/Button02"
         android:layout_marginTop="34dp"
+        android:layout_gravity="center_horizontal"
         android:text="Numbers 20-100" />
 
-</RelativeLayout>
+</LinearLayout>
