@@ -2,11 +2,13 @@ package com.handicapable.asltutor;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 @TargetApi(11)
 public class ChooseQuizActivity extends Activity {
@@ -34,6 +36,11 @@ public class ChooseQuizActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void startAlphabetQuiz(View view) {
+		Intent intent = new Intent(this, QuizSettingsActivity.class);
+		startActivity(intent);
 	}
 
 }

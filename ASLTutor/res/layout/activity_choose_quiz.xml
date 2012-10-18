@@ -21,6 +21,7 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="53dp"
+        android:onClick="startAlphabetQuiz"
         android:text="Alphabet" />
 
     <Button

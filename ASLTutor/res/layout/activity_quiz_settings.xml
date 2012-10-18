@@ -31,7 +31,7 @@
         android:contentDescription="Arrow Right"
         android:src="@drawable/arrowright" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,32 +39,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="17dp"
         android:ems="10"
-        android:inputType="number"
-        android:text="Countdown" >
+        android:text="Countdown: 5 sec" >
 
         <requestFocus />
-    </EditText>
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp"
-        android:contentDescription="Sign Image"
-        android:src="@drawable/cardrive" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:contentDescription="Sign Word"
-        android:text="CAR"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    </TextView>
 
     <Button
         android:id="@+id/button1"
@@ -73,7 +51,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp"
         android:layout_toRightOf="@+id/imageView2"
-        android:text="Got Correct" />
+        android:text="Got Correct"
+        android:onClick="showSign" />
 
     <Button
         android:id="@+id/Button01"
@@ -82,6 +61,17 @@
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_toLeftOf="@+id/imageView2"
-        android:text="Got Wrong" />
+        android:text="Got Wrong"
+        android:onClick="showSign" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:contentDescription="Sign Image"
+        android:src="@drawable/a" />
 
 </RelativeLayout>
