@@ -1,10 +1,13 @@
 package com.handicapable.asltutor;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -44,11 +47,19 @@ public class ViewSignActivity extends Activity {
 	private void showSign(String dic, String word) {
 		String where = "word = '" + word + "'";
 		Cursor queryResult = db.query(dic, null, where, null, null, null, null);
-
+		queryResult.moveToFirst();
 		String signName = queryResult.getString(1);
 		String mediaPath = queryResult.getString(2);
 
-		img.setImageURI(Uri.parse(mediaPath));
+		// Show image
+		try {
+			InputStream sign = getAssets().open(mediaPath);
+			img.setImageBitmap(BitmapFactory.decodeStream(sign));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Show text
 		text.setText(signName);
 	}
 
