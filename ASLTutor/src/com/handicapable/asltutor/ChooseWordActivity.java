@@ -35,7 +35,7 @@ public class ChooseWordActivity extends Activity {
 		db = dbHelper.openReadableDatabase();
 
 		listView = (ListView) findViewById(R.id.dic_list);
-		showWords(bundle.getString("com.handicapable.asltutor.word"));
+		showWords(bundle.getString("com.handicapable.asltutor.dic"));
 	}
 
 	private void showWords(String dic) {

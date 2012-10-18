@@ -42,10 +42,11 @@ public class ViewSignActivity extends Activity {
 	}
 
 	private void showSign(String dic, String word) {
-		Cursor queryResult = db.query(dic, null, "word = '?'", new String[] { word }, null, null, null);
+		String where = "word = '" + word + "'";
+		Cursor queryResult = db.query(dic, null, where, null, null, null, null);
 
-		String signName = queryResult.getString(queryResult.getColumnIndex("word"));
-		String mediaPath = queryResult.getString(queryResult.getColumnIndex("media_path"));
+		String signName = queryResult.getString(1);
+		String mediaPath = queryResult.getString(2);
 
 		img.setImageURI(Uri.parse(mediaPath));
 		text.setText(signName);

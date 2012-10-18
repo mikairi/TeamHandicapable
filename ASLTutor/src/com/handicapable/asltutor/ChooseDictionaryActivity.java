@@ -54,7 +54,7 @@ public class ChooseDictionaryActivity extends Activity {
 				Bundle bundle = new Bundle();
 				TextView tv = (TextView) view.findViewById(R.id.word);
 
-				bundle.putString("com.handicapable.asltutor.word", tv.getText().toString());
+				bundle.putString("com.handicapable.asltutor.dic", tv.getText().toString());
 				intent.putExtras(bundle);
 				startActivity(intent);
 			}
