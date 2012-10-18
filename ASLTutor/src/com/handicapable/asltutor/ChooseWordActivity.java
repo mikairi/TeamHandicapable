@@ -2,16 +2,15 @@ package com.handicapable.asltutor;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.view.*;
+import android.widget.*;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 import com.handicapable.asltutor.helper.StringHelper;
@@ -34,7 +33,6 @@ public class ChooseWordActivity extends Activity {
 
 		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
 		db = dbHelper.openReadableDatabase();
-		Log.d("ChooseDictionaryActivity", "Database opened " + db.getPath());
 
 		listView = (ListView) findViewById(R.id.dic_list);
 		showWords(bundle.getString("com.handicapable.asltutor.word"));
@@ -42,7 +40,7 @@ public class ChooseWordActivity extends Activity {
 
 	private void showWords(String dic) {
 		// Convert dic to table name
-		String dic_name = StringHelper.getTableFromName(dic);
+		final String dic_name = StringHelper.getTableFromName(dic);
 		// Get a list of words
 		Cursor queryResult = db.query(dic_name, new String[] { "_id", "word" }, null, null, null, null, "word");
 
@@ -52,6 +50,20 @@ public class ChooseWordActivity extends Activity {
 		@SuppressWarnings("deprecation")
 		SimpleCursorAdapter words = new SimpleCursorAdapter(this, R.layout.search_result, queryResult, from, to);
 		listView.setAdapter(words);
+
+		listView.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getApplicationContext(), ViewSignActivity.class);
+				Bundle bundle = new Bundle();
+				TextView tv = (TextView) view.findViewById(R.id.word);
+
+				bundle.putString("com.handicapable.asltutor.word", tv.getText().toString());
+				bundle.putString("com.handicapable.asltutor.dic", dic_name);
+				intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
