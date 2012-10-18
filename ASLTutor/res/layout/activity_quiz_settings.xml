@@ -51,8 +51,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp"
         android:layout_toRightOf="@+id/imageView2"
-        android:text="Got Correct"
-        android:onClick="showSign" />
+        android:onClick="showSign"
+        android:text="Got Correct" />
 
     <Button
         android:id="@+id/Button01"
@@ -61,17 +61,20 @@
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_toLeftOf="@+id/imageView2"
-        android:text="Got Wrong"
-        android:onClick="showSign" />
+        android:onClick="showSign"
+        android:text="Got Wrong" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/button1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
+        android:adjustViewBounds="true"
         android:contentDescription="Sign Image"
+        android:gravity="center"
+        android:scaleType="fitCenter"
         android:src="@drawable/a" />
 
 </RelativeLayout>

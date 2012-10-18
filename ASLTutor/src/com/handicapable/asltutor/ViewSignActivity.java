@@ -50,15 +50,20 @@ public class ViewSignActivity extends Activity {
 		queryResult.moveToFirst();
 		String signName = queryResult.getString(1);
 		String mediaPath = queryResult.getString(2);
-
+	
 		// Show image
 		try {
+			for(String S : getAssets().list("Alphabet"))
+				System.out.println(S);
+			
 			InputStream sign = getAssets().open(mediaPath);
+			
 			img.setImageBitmap(BitmapFactory.decodeStream(sign));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		img.setMinimumWidth(120);
+		img.setMinimumHeight(120);
 		// Show text
 		text.setText(signName);
 	}
