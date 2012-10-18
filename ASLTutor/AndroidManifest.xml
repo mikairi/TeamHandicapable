@@ -65,6 +65,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.asltutor.ChooseDictionaryActivity" />
         </activity>
+        <activity
+            android:name=".ViewSignActivity"
+            android:label="@string/title_activity_view_sign" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.handicapable.asltutor.ChooseWordActivity" />
+        </activity>
     </application>
 
 </manifest>
