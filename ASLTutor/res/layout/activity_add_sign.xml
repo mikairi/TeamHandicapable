@@ -6,26 +6,21 @@
     android:padding="@dimen/padding_large" >
 
     <Button
+        android:id="@+id/btn_select_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:onClick="selectImage"
         android:padding="@dimen/padding_large"
-        android:text="Select Picture/Video" />
+        android:text="Select Picture" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/padding_medium"
-        android:padding="@dimen/padding_large"
-        android:text="Select Picture/Video" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/btn_add_sign"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -37,7 +32,7 @@
             android:id="@+id/newWord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/button1"
+            android:layout_above="@+id/btn_add_sign"
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="16dp"
             android:ems="10"
@@ -48,34 +43,24 @@
         </EditText>
 
         <TextView
+            android:id="@+id/lbl_sign_meaning"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/newWord"
             android:layout_alignParentLeft="true"
+            android:layout_marginTop="16dp"
             android:text="Meaning of the sign:"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <MediaController
-            android:id="@+id/mediaController1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="22dp" >
-
-        </MediaController>
 
         <ImageView
             android:id="@+id/newImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/lbl_sign_meaning"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:contentDescription="Sign"
-            android:maxHeight="240dp"
-            android:minHeight="160dp"
-            android:scaleType="centerInside" />
-
+            android:scaleType="fitCenter" />
     </RelativeLayout>
 
 </LinearLayout>
