@@ -11,6 +11,7 @@
         android:layout_height="fill_parent"
         android:gravity="center_vertical"
         android:height="48dp"
-        android:maxLines="1" android:paddingLeft="@dimen/padding_small"/>
+        android:maxLines="1"
+        android:paddingLeft="@dimen/padding_small" />
 
 </LinearLayout>

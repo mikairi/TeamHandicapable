@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -51,6 +52,7 @@ public class AddSignActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK && requestCode == SELECT_IMAGE) {
 			Uri resultUri = data.getData();
+			Log.d("AddSign", data.resolveType(this));
 			if (resultUri != null) {
 				Cursor cursor = getContentResolver().query(resultUri,
 						new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
@@ -60,6 +62,7 @@ public class AddSignActivity extends Activity {
 				mImageView.setImageURI(Uri.parse(imagePath));
 			}
 		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	public void addSign(View view) {
