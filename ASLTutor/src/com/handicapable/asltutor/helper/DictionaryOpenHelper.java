@@ -13,6 +13,7 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 	private static final String DB_PATH = "/data/data/com.handicapable.asltutor/databases/";
 
 	private final Context context;
+	private SQLiteDatabase db;
 
 	public DictionaryOpenHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
@@ -60,11 +61,11 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 		inDB.close();
 	}
 
-	public SQLiteDatabase openReadableDatabase() {
+	public static SQLiteDatabase openReadableDatabase() {
 		return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
 	}
 
-	public SQLiteDatabase openWritableDatabase() {
+	public static SQLiteDatabase openWritableDatabase() {
 		return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READWRITE);
 	}
 

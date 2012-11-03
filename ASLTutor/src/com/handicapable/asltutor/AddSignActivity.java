@@ -2,17 +2,24 @@ package com.handicapable.asltutor;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 
 @TargetApi(11)
 public class AddSignActivity extends Activity {
@@ -20,7 +27,10 @@ public class AddSignActivity extends Activity {
 	public static final int SELECT_IMAGE = 1;
 
 	private ImageView mImageView;
-
+	private String imagePath;
+	private SQLiteDatabase db;
+	private Uri imageuri;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -58,7 +68,8 @@ public class AddSignActivity extends Activity {
 						new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
 				cursor.moveToFirst();
 
-				String imagePath = cursor.getString(0);
+				imagePath = cursor.getString(0);
+				imageuri = Uri.parse(imagePath);
 				mImageView.setImageURI(Uri.parse(imagePath));
 			}
 		}
@@ -66,6 +77,14 @@ public class AddSignActivity extends Activity {
 	}
 
 	public void addSign(View view) {
+		db = DictionaryOpenHelper.openWritableDatabase();
+		TextView meaning = (TextView) findViewById(R.id.newWord);
+		
+		ContentValues values = new ContentValues();
+		values.put("word", meaning.getText().toString());
+		values.put("media_path", imageuri.toString());
+		db.insert( "user_dictionary", null, values);
+		
 		NavUtils.navigateUpFromSameTask(this);
 		Toast toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
 				Toast.LENGTH_SHORT);
