@@ -47,9 +47,6 @@ public class ViewSignActivity extends SherlockActivity {
 		InputStream sign = null;
 		// Show image
 		try {
-			for (String S : getAssets().list("Alphabet"))
-				System.out.println(S);
-
 			if (mediaPath.contains("sdcard")) sign = new BufferedInputStream(new FileInputStream(mediaPath));
 			else sign = getAssets().open(mediaPath);
 

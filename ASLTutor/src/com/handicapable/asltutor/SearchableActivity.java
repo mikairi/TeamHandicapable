@@ -27,10 +27,12 @@ public class SearchableActivity extends SherlockListActivity {
 		setContentView(R.layout.activity_searchable);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+		// Get the database
 		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
 		db = dbHelper.openReadableDatabase();
 
 		Intent searchIntent = getIntent();
+		// Check for the right intent
 		if (Intent.ACTION_SEARCH.equals(searchIntent.getAction())) {
 			searchQuery = searchIntent.getStringExtra(SearchManager.QUERY);
 			search(searchQuery);
@@ -55,8 +57,10 @@ public class SearchableActivity extends SherlockListActivity {
 	}
 
 	private void search(String query) {
+		// Query the word/sign using LIKE
 		String where = "word LIKE '" + query + "%'";
 		Cursor queryResult = db.query("dictionary", null, where, null, null, null, "word");
+
 		String[] from = new String[] { "word" };
 		int[] to = new int[] { R.id.word };
 
