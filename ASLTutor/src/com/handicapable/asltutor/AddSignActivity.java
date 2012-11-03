@@ -1,21 +1,21 @@
 package com.handicapable.asltutor;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
-import android.view.*;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-@TargetApi(11)
-public class AddSignActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class AddSignActivity extends SherlockActivity {
 
 	public static final int SELECT_IMAGE = 1;
 
@@ -25,16 +25,14 @@ public class AddSignActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_sign);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mImageView = (ImageView) findViewById(R.id.newImage);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_add_sign, menu);
+		getSupportMenuInflater().inflate(R.menu.activity_add_sign, menu);
 		return true;
 	}
 
