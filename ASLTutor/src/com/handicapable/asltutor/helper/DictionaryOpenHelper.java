@@ -60,11 +60,11 @@ public class DictionaryOpenHelper extends SQLiteOpenHelper {
 		inDB.close();
 	}
 
-	public SQLiteDatabase openReadableDatabase() {
+	public static SQLiteDatabase openReadableDatabase() {
 		return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
 	}
 
-	public SQLiteDatabase openWritableDatabase() {
+	public static SQLiteDatabase openWritableDatabase() {
 		return SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READWRITE);
 	}
 

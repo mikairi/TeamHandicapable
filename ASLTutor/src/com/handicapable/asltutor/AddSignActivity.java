@@ -1,16 +1,27 @@
 package com.handicapable.asltutor;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.*;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -25,17 +36,17 @@ public class AddSignActivity extends SherlockActivity {
 	private String imagePath;
 	private SQLiteDatabase db;
 	private Uri imageuri;
+	private Bitmap bmp;
+	private String newImageFilePath;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_sign);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
-		db = dbHelper.openReadableDatabase();
-
 		mImageView = (ImageView) findViewById(R.id.newImage);
+		newImageFilePath = (Environment.getExternalStorageDirectory().toURI()
+				.toString() + "\\temp.png");
 	}
 
 	@Override
@@ -61,28 +72,37 @@ public class AddSignActivity extends SherlockActivity {
 			Log.d("AddSign", data.resolveType(this));
 			if (resultUri != null) {
 				Cursor cursor = getContentResolver().query(resultUri,
-						new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
+						new String[] { MediaStore.Images.ImageColumns.DATA },
+						null, null, null);
 				cursor.moveToFirst();
 
 				imagePath = cursor.getString(0);
 				imageuri = Uri.parse(imagePath);
 				mImageView.setImageURI(Uri.parse(imagePath));
 			}
+		} else if (resultCode == RESULT_OK && requestCode == 55) {
+			bmp = BitmapFactory.decodeFile(newImageFilePath);
+			mImageView.setImageBitmap(bmp);
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	public void addSign(View view) {
 		TextView meaning = (TextView) findViewById(R.id.newWord);
-
-		ContentValues values = new ContentValues();
-		values.put("word", meaning.getText().toString());
-		values.put("media_path", imageuri.toString());
-		db.insert("user_dictionary", null, values);
-
+		Toast toast;
+		if (bmp != null)
+			saveCaputredImage(meaning);
+		try {
+			addToDictionary(meaning);
+			toast = Toast.makeText(getApplicationContext(),
+					"You have added a new sign to your dictionary!",
+					Toast.LENGTH_SHORT);
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			toast = Toast.makeText(getApplicationContext(),
+					"Unable to add sign to dictionary", Toast.LENGTH_SHORT);
+		}
 		NavUtils.navigateUpFromSameTask(this);
-		Toast toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
-				Toast.LENGTH_SHORT);
 		toast.show();
 	}
 
@@ -90,14 +110,38 @@ public class AddSignActivity extends SherlockActivity {
 		Intent pickImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
 		pickImageIntent.setType("image/*");
 
-		// Code for taking pictures, which does not work atm
-		// Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		//
-		// String pickTitle = "Select or Take a new Picture";
-		// Intent chooseIntent = Intent.createChooser(pickImageIntent, pickTitle);
-		// chooseIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { takePhotoIntent });
-
 		startActivityForResult(pickImageIntent, SELECT_IMAGE);
 	}
 
+	public void takePicture(View view) {
+		File imageFile = new File(newImageFilePath);
+		Uri imageFileUri = Uri.fromFile(imageFile);
+		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		takePictureIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,
+				imageFileUri);
+		startActivityForResult(takePictureIntent, 55);
+	}
+
+	private void saveCaputredImage(TextView meaning) {
+		try {
+			FileOutputStream fos = openFileOutput(meaning.getText().toString(),
+					Context.MODE_PRIVATE);
+			bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void addToDictionary(TextView meaning) {
+		db = DictionaryOpenHelper.openWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("word", meaning.getText().toString());
+		values.put("media_path", imageuri.toString());
+		db.insert("user_dictionary", null, values);
+	}
 }
