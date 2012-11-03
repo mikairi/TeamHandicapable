@@ -1,7 +1,6 @@
 package com.handicapable.asltutor;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -45,17 +44,20 @@ public class ViewSignActivity extends SherlockActivity {
 		String signName = queryResult.getString(1);
 		String mediaPath = queryResult.getString(2);
 
+		InputStream sign = null;
 		// Show image
 		try {
 			for (String S : getAssets().list("Alphabet"))
 				System.out.println(S);
 
-			InputStream sign = getAssets().open(mediaPath);
+			if (mediaPath.contains("sdcard")) sign = new BufferedInputStream(new FileInputStream(mediaPath));
+			else sign = getAssets().open(mediaPath);
 
-			img.setImageBitmap(BitmapFactory.decodeStream(sign));
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
+
 		}
+		img.setImageBitmap(BitmapFactory.decodeStream(sign));
 		img.setMinimumWidth(120);
 		img.setMinimumHeight(120);
 		// Show text

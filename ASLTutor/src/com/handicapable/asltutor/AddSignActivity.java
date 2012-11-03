@@ -1,31 +1,39 @@
 package com.handicapable.asltutor;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 
 public class AddSignActivity extends SherlockActivity {
 
 	public static final int SELECT_IMAGE = 1;
 
 	private ImageView mImageView;
+	private String imagePath;
+	private SQLiteDatabase db;
+	private Uri imageuri;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_sign);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
+		db = dbHelper.openReadableDatabase();
 
 		mImageView = (ImageView) findViewById(R.id.newImage);
 	}
@@ -40,7 +48,7 @@ public class AddSignActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -56,7 +64,8 @@ public class AddSignActivity extends SherlockActivity {
 						new String[] { MediaStore.Images.ImageColumns.DATA }, null, null, null);
 				cursor.moveToFirst();
 
-				String imagePath = cursor.getString(0);
+				imagePath = cursor.getString(0);
+				imageuri = Uri.parse(imagePath);
 				mImageView.setImageURI(Uri.parse(imagePath));
 			}
 		}
@@ -64,6 +73,13 @@ public class AddSignActivity extends SherlockActivity {
 	}
 
 	public void addSign(View view) {
+		TextView meaning = (TextView) findViewById(R.id.newWord);
+
+		ContentValues values = new ContentValues();
+		values.put("word", meaning.getText().toString());
+		values.put("media_path", imageuri.toString());
+		db.insert("user_dictionary", null, values);
+
 		NavUtils.navigateUpFromSameTask(this);
 		Toast toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
 				Toast.LENGTH_SHORT);

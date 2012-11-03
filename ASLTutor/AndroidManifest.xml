@@ -30,8 +30,8 @@
             </meta-data>
         </activity>
         <activity
-            android:name=".QuizSettingsActivity"
-            android:label="@string/title_activity_quiz_settings" >
+            android:name=".TakeQuizActivity"
+            android:label="@string/title_activity_take_quiz" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.asltutor.MainActivity" >

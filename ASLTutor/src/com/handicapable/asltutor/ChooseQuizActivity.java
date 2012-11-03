@@ -2,7 +2,6 @@ package com.handicapable.asltutor;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.View;
 
 import com.actionbarsherlock.app.SherlockActivity;
@@ -28,14 +27,14 @@ public class ChooseQuizActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	public void startAlphabetQuiz(View view) {
-		Intent intent = new Intent(this, QuizSettingsActivity.class);
+		Intent intent = new Intent(this, TakeQuizActivity.class);
 		startActivity(intent);
 	}
 
