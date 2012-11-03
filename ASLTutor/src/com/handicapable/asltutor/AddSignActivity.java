@@ -36,7 +36,9 @@ public class AddSignActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_sign);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 		mImageView = (ImageView) findViewById(R.id.newImage);
+
 		newImageFilePath = (Environment.getExternalStorageDirectory().toURI().toString() + "\\temp.png");
 	}
 
@@ -50,7 +52,6 @@ public class AddSignActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			db.close();
 			finish();
 			return true;
 		}
@@ -82,18 +83,16 @@ public class AddSignActivity extends SherlockActivity {
 		TextView meaning = (TextView) findViewById(R.id.newWord);
 
 		Toast toast;
-		if (bmp != null) saveCapturedImage(meaning);
+		if (bmp != null) saveCaputredImage(meaning);
 		try {
 			addToDictionary(meaning);
 			toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
 					Toast.LENGTH_SHORT);
-			toast.show();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			toast = Toast.makeText(getApplicationContext(), "Unable to add sign to dictionary", Toast.LENGTH_SHORT);
-			toast.show();
 		}
-
+		toast.show();
 		finish();
 	}
 
@@ -108,11 +107,12 @@ public class AddSignActivity extends SherlockActivity {
 		File imageFile = new File(newImageFilePath);
 		Uri imageFileUri = Uri.fromFile(imageFile);
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
 		takePictureIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageFileUri);
 		startActivityForResult(takePictureIntent, 55);
 	}
 
-	private void saveCapturedImage(TextView meaning) {
+	private void saveCaputredImage(TextView meaning) {
 		try {
 			FileOutputStream fos = openFileOutput(meaning.getText().toString(), Context.MODE_PRIVATE);
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
@@ -133,5 +133,6 @@ public class AddSignActivity extends SherlockActivity {
 		values.put("word", meaning.getText().toString());
 		values.put("media_path", imageuri.toString());
 		db.insert("dictionary", null, values);
+
 	}
 }
