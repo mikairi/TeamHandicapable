@@ -11,5 +11,8 @@
     <string name="title_activity_make_quiz">Make New Quiz</string>
     <string name="title_activity_choose_word">Select Word</string>
     <string name="title_activity_view_sign">View Sign</string>
+    <string name="search_all_hint">Search across all dictionary</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_searchable">Search Result</string>
 
 </resources>

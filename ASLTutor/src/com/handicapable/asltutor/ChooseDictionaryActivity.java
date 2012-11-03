@@ -9,12 +9,12 @@ import android.view.View;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 
-public class ChooseDictionaryActivity extends SherlockActivity {
+public class ChooseDictionaryActivity extends SherlockListActivity {
 
 	private SQLiteDatabase db;
 	private ListView listView;
@@ -22,14 +22,12 @@ public class ChooseDictionaryActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_dictionary);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
 		db = dbHelper.openReadableDatabase();
 		Log.d("ChooseDictionaryActivity", "Database opened " + db.getPath());
 
-		listView = (ListView) findViewById(R.id.dic_list);
 		showDictionaries();
 	}
 
@@ -42,8 +40,9 @@ public class ChooseDictionaryActivity extends SherlockActivity {
 
 		@SuppressWarnings("deprecation")
 		SimpleCursorAdapter dicts = new SimpleCursorAdapter(this, R.layout.search_result, queryResult, from, to);
-		listView.setAdapter(dicts);
+		setListAdapter(dicts);
 
+		listView = getListView();
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override

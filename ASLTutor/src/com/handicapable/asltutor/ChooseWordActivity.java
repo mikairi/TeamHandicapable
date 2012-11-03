@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 import com.handicapable.asltutor.helper.StringHelper;
 
-public class ChooseWordActivity extends SherlockActivity {
+public class ChooseWordActivity extends SherlockListActivity {
 
 	private SQLiteDatabase db;
 	private ListView listView;
@@ -23,7 +23,6 @@ public class ChooseWordActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_dictionary);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Bundle bundle = getIntent().getExtras();
@@ -31,7 +30,6 @@ public class ChooseWordActivity extends SherlockActivity {
 		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
 		db = dbHelper.openReadableDatabase();
 
-		listView = (ListView) findViewById(R.id.dic_list);
 		showWords(bundle.getString("com.handicapable.asltutor.dic"));
 	}
 
@@ -46,8 +44,9 @@ public class ChooseWordActivity extends SherlockActivity {
 
 		@SuppressWarnings("deprecation")
 		SimpleCursorAdapter words = new SimpleCursorAdapter(this, R.layout.search_result, queryResult, from, to);
-		listView.setAdapter(words);
+		setListAdapter(words);
 
+		listView = getListView();
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
