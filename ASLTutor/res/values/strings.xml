@@ -14,5 +14,6 @@
     <string name="search_all_hint">Search across all dictionary</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_searchable">Search Result</string>
+    <string name="search_empty">No result</string>
 
 </resources>

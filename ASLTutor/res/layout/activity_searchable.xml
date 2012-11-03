@@ -14,6 +14,8 @@
         android:id="@android:id/empty"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:padding="@dimen/padding_small"
+        android:text="@string/search_empty"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

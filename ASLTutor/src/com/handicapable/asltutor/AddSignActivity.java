@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
@@ -48,6 +47,7 @@ public class AddSignActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			db.close();
 			finish();
 			return true;
 		}
@@ -80,10 +80,11 @@ public class AddSignActivity extends SherlockActivity {
 		values.put("media_path", imageuri.toString());
 		db.insert("user_dictionary", null, values);
 
-		NavUtils.navigateUpFromSameTask(this);
+		db.close();
 		Toast toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
 				Toast.LENGTH_SHORT);
 		toast.show();
+		finish();
 	}
 
 	public void selectImage(View view) {

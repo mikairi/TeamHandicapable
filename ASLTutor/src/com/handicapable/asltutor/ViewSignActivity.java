@@ -74,6 +74,7 @@ public class ViewSignActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			db.close();
 			finish();
 			return true;
 		}

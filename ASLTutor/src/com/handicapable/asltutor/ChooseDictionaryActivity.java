@@ -22,6 +22,7 @@ public class ChooseDictionaryActivity extends SherlockListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_searchable);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		DictionaryOpenHelper dbHelper = new DictionaryOpenHelper(this);
@@ -69,6 +70,7 @@ public class ChooseDictionaryActivity extends SherlockListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
+			db.close();
 			finish();
 			return true;
 		}
