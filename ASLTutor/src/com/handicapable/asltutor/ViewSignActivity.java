@@ -34,12 +34,12 @@ public class ViewSignActivity extends SherlockActivity {
 		img = (ImageView) findViewById(R.id.signImage);
 		text = (TextView) findViewById(R.id.signMeaning);
 
-		showSign(bundle.getString("com.handicapable.asltutor.dic"), bundle.getString("com.handicapable.asltutor.word"));
+		showSign(bundle.getString("com.handicapable.asltutor.word"));
 	}
 
-	private void showSign(String dic, String word) {
+	private void showSign(String word) {
 		String where = "word = '" + word + "'";
-		Cursor queryResult = db.query(dic, null, where, null, null, null, null);
+		Cursor queryResult = db.query("dictionary", null, where, null, null, null, null);
 		queryResult.moveToFirst();
 		String signName = queryResult.getString(1);
 		String mediaPath = queryResult.getString(2);

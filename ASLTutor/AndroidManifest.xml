@@ -52,6 +52,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.asltutor.MainActivity" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
         </activity>
         <activity
             android:name=".MakeQuizActivity"
@@ -66,6 +69,9 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.handicapable.asltutor.ChooseDictionaryActivity" />
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
         </activity>
         <activity
             android:name=".ViewSignActivity"
