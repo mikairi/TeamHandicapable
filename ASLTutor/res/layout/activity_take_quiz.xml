@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/padding_large"
+    android:paddingRight="@dimen/padding_large" >
 
     <ImageView
         android:id="@+id/imageView2"
@@ -19,6 +21,7 @@
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/imageView2"
         android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/imageView2"
         android:contentDescription="Arrow Left"
         android:src="@drawable/arrowleft" />
 
@@ -28,7 +31,9 @@
         android:layout_height="50dp"
         android:layout_alignBottom="@+id/imageView2"
         android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/imageView2"
         android:contentDescription="Arrow Right"
+        android:onClick="nextQuestion"
         android:src="@drawable/arrowright" />
 
     <TextView
@@ -48,11 +53,12 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="17dp"
         android:layout_toRightOf="@+id/imageView2"
-        android:onClick="showSign"
-        android:text="Got Correct" />
+        android:onClick="showAnswer"
+        android:text="Got It!" />
 
     <Button
         android:id="@+id/Button01"
@@ -60,12 +66,13 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@+id/imageView2"
-        android:onClick="showSign"
-        android:text="Got Wrong" />
+        android:onClick="showAnswer"
+        android:text="Not Sure" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/question_img"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_below="@+id/button1"
@@ -74,7 +81,6 @@
         android:adjustViewBounds="true"
         android:contentDescription="Sign Image"
         android:gravity="center"
-        android:scaleType="fitCenter"
-        android:src="@drawable/a" />
+        android:scaleType="fitCenter" />
 
 </RelativeLayout>

@@ -39,7 +39,7 @@ public class AddSignActivity extends SherlockActivity {
 
 		mImageView = (ImageView) findViewById(R.id.newImage);
 
-		newImageFilePath = (Environment.getExternalStorageDirectory().toURI().toString() + "\\temp.png");
+		newImageFilePath = (Environment.getExternalStorageDirectory().toURI().toString() + "temp.png");
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class AddSignActivity extends SherlockActivity {
 		TextView meaning = (TextView) findViewById(R.id.newWord);
 
 		Toast toast;
-		if (bmp != null) saveCaputredImage(meaning);
+		if (bmp != null) saveCapturedImage(meaning);
 		try {
 			addToDictionary(meaning);
 			toast = Toast.makeText(getApplicationContext(), "You have added a new sign to your dictionary!",
@@ -108,11 +108,11 @@ public class AddSignActivity extends SherlockActivity {
 		Uri imageFileUri = Uri.fromFile(imageFile);
 		Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-		takePictureIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageFileUri);
+		// takePictureIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, imageFileUri);
 		startActivityForResult(takePictureIntent, 55);
 	}
 
-	private void saveCaputredImage(TextView meaning) {
+	private void saveCapturedImage(TextView meaning) {
 		try {
 			FileOutputStream fos = openFileOutput(meaning.getText().toString(), Context.MODE_PRIVATE);
 			bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
