@@ -38,8 +38,7 @@ public class ChooseWordActivity extends SherlockListActivity {
 
 	private void showWords(final String dic_name) {
 		String query = "SELECT dictionary._id, dictionary.word FROM dictionary, "
-				+ "dictionaries WHERE dictionaries.name = ? AND dictionaries._id = dictionary.dictionary_id "
-				+ "ORDER BY word";
+				+ "dictionaries WHERE dictionaries.name = ? AND dictionaries._id = dictionary.dictionary_id " + "";
 		Cursor queryResult = db.rawQuery(query, new String[] { dic_name });
 
 		String[] from = new String[] { "word" };
