@@ -7,10 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.*;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -19,10 +19,13 @@ import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 
 public class TakeQuizActivity extends SherlockActivity {
 
+	public static int TIME_LIMIT = 5;
+
 	private SQLiteDatabase db;
 	private Cursor queryResult;
 	private String answer;
 	private ImageView img;
+	private TextView time;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class TakeQuizActivity extends SherlockActivity {
 		db = dbHelper.openReadableDatabase();
 
 		img = (ImageView) findViewById(R.id.question_img);
+		time = (TextView) findViewById(R.id.timeLimit);
 		setupQuiz();
 	}
 
@@ -73,6 +77,22 @@ public class TakeQuizActivity extends SherlockActivity {
 		}
 
 		img.setImageBitmap(BitmapFactory.decodeStream(imgStream));
+
+		// Countdown timer for question
+		CountDownTimer timer = new CountDownTimer(TIME_LIMIT * 1000, 1000) {
+
+			@Override
+			public void onTick(long millisUntilFinished) {
+				time.setText("Countdown: " + millisUntilFinished / 1000 + " sec");
+			}
+
+			@Override
+			public void onFinish() {
+				time.setText("Time's up!");
+				showAnswer(null);
+			}
+		};
+		timer.start();
 	}
 
 	public void nextQuestion(View view) {
@@ -82,7 +102,7 @@ public class TakeQuizActivity extends SherlockActivity {
 		} else {
 			// Reach the end of quiz
 			Toast toast = Toast.makeText(getApplicationContext(), "Congratulation! You have finished the quiz.",
-					Toast.LENGTH_LONG);
+					Toast.LENGTH_SHORT);
 			toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 			toast.show();
 		}
@@ -91,7 +111,7 @@ public class TakeQuizActivity extends SherlockActivity {
 	public void showAnswer(View view) {
 		Toast toast = Toast.makeText(getApplicationContext(), "The sign displayed was: '" + answer + "'",
 				Toast.LENGTH_SHORT);
-		toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
+		toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 100);
 		toast.show();
 	}
 }

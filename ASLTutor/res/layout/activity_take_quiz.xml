@@ -37,16 +37,15 @@
         android:src="@drawable/arrowright" />
 
     <TextView
-        android:id="@+id/editText1"
+        android:id="@+id/timeLimit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageView2"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="17dp"
         android:ems="10"
-        android:text="Countdown: 5 sec" >
-
-        <requestFocus />
+        android:gravity="center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceMedium" >
     </TextView>
 
     <Button
