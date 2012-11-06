@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.*;
@@ -15,6 +14,7 @@ import android.widget.*;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.handicapable.asltutor.helper.CountDownTimerWithPause;
 import com.handicapable.asltutor.helper.DictionaryOpenHelper;
 
 public class TakeQuizActivity extends SherlockActivity {
@@ -26,6 +26,9 @@ public class TakeQuizActivity extends SherlockActivity {
 	private String answer;
 	private ImageView img;
 	private TextView time;
+
+	private CountDownTimerWithPause timer;
+	private long timeLeft;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -78,12 +81,16 @@ public class TakeQuizActivity extends SherlockActivity {
 
 		img.setImageBitmap(BitmapFactory.decodeStream(imgStream));
 
+		// Set the pause button back in case it's displaying play
+		((ImageView) findViewById(R.id.timerControl)).setImageResource(R.drawable.pause);
+
 		// Countdown timer for question
-		CountDownTimer timer = new CountDownTimer(TIME_LIMIT * 1000, 1000) {
+		timer = new CountDownTimerWithPause(TIME_LIMIT * 1000, 1000, true) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
 				time.setText("Countdown: " + millisUntilFinished / 1000 + " sec");
+				timeLeft = millisUntilFinished;
 			}
 
 			@Override
@@ -92,10 +99,22 @@ public class TakeQuizActivity extends SherlockActivity {
 				showAnswer(null);
 			}
 		};
-		timer.start();
+		timer.create();
+	}
+
+	public void pauseTimer(View view) {
+		ImageView pauseImg = (ImageView) findViewById(R.id.timerControl);
+		if (timer.isRunning()) {
+			pauseImg.setImageResource(R.drawable.play);
+			timer.pause();
+		} else {
+			pauseImg.setImageResource(R.drawable.pause);
+			timer.resume();
+		}
 	}
 
 	public void nextQuestion(View view) {
+		timer.cancel();
 		if (!queryResult.isLast()) {
 			queryResult.moveToNext();
 			displayQuestion(queryResult.getString(1), queryResult.getString(2));

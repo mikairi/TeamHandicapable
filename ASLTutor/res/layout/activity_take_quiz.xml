@@ -6,41 +6,43 @@
     android:paddingRight="@dimen/padding_large" >
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/timerControl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="44dp"
         android:contentDescription="Pause Button"
-        android:src="@drawable/imgres" />
+        android:onClick="pauseTimer"
+        android:src="@drawable/pause"
+        android:tag="pause" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/imageView2"
+        android:id="@+id/prevQuestion"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/timerControl"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/imageView2"
         android:contentDescription="Arrow Left"
-        android:src="@drawable/arrowleft" />
+        android:scaleType="fitXY"
+        android:src="@drawable/arrow_left" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_alignBottom="@+id/imageView2"
+        android:id="@+id/nextQuestion"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/timerControl"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/imageView2"
         android:contentDescription="Arrow Right"
         android:onClick="nextQuestion"
-        android:src="@drawable/arrowright" />
+        android:scaleType="fitXY"
+        android:src="@drawable/arrow_right" />
 
     <TextView
         android:id="@+id/timeLimit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView2"
+        android:layout_above="@+id/timerControl"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="17dp"
         android:ems="10"
@@ -54,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="17dp"
-        android:layout_toRightOf="@+id/imageView2"
+        android:layout_marginTop="16dp"
+        android:layout_toRightOf="@+id/timerControl"
         android:onClick="showAnswer"
         android:text="Got It!" />
 
@@ -63,10 +65,10 @@
         android:id="@+id/Button01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/timerControl"
         android:onClick="showAnswer"
         android:text="Not Sure" />
 
